@@ -1,0 +1,55 @@
+<div class="rowElem noborder">
+    <label>Page Staus: <a onclick="$.jGrowl('Status of the page.  Whether it is live or not.');">&nbsp;&nbsp;<i class="fa fa-question-circle fa-1x"></i></a></label>
+    <div class="formRight">
+        <input type="radio" id="display" name="pagestatus" <?=($this->pageInfo['pagestatus']=="live"?'checked="checked"':'');?> value="live" /><label for="display">Live</label>
+        <input type="radio" id="dontdisplay" name="pagestatus" <?=($this->pageInfo['pagestatus']=="hidden"?'checked="checked"':'');?> value="hidden"/><label for="dontdisplay">Hidden</label>
+    </div>
+    <div class="fix"></div>
+</div>
+<div class="rowElem">
+    <label>Page Category:</label>
+    <div class="formRight">
+    <select name="catid" id="catid">
+        <?php
+        foreach($this->pageCats as $cat){?>
+            <option value="<?=$cat['id'];?>" <?=($this->pageInfo['catid']==$cat['id']?"selected":"");?>><?=$cat['name'];?></option>
+        <? } ?>
+    </select>
+    </div>
+    <div class="fix"></div>
+</div>
+<div class="rowElem">
+    <label>Parent Page:</label>
+<? 	global $con;
+    $parent_q = 'SELECT * FROM cms_pages WHERE parentid = "0" AND catid = "'.$this->pageInfo['catid'].'" AND id <> "'.$this->pageInfo['id'].'" ORDER by title DESC';
+    $parent_r = mysqli_query($con,$parent_q); ?>
+    <div class="formRight">
+    <select name="parentid" id="parentid">
+        <option value="0">None</option>
+        <? while($parent = mysqli_fetch_array($parent_r,MYSQLI_ASSOC)){ ?>
+            <option value="<?=$parent['id'];?>" <?=($this->pageInfo['parentid']==$parent['id']?"selected":"");?>><?=$parent['title'];?></option>
+        <? } ?>
+    </select>
+    </div>
+    <div class="fix"></div>
+</div>
+<div class="rowElem">
+    <label>Page Title:</label>
+    <div class="formRight">
+        <input value="<?=$this->pageInfo['title'];?>" type="text" class="validate[required]" name="title" id="title" style="width:70%"/>
+    </div>
+    <div class="fix"></div>
+</div>
+<div class="rowElem">
+    <label>Page URL: <a onclick="$.jGrowl('Customized URL for the page. If the page\'s URL is duplicate, a random number will be appended to the end of it.');">&nbsp;&nbsp;<i class="fa fa-question-circle fa-1x"></i></a></label>
+    <div class="formRight">
+        <input value="<?=$this->pageInfo['page_url'];?>" type="text" name="page_url" id="page_url" style="width:70%"/></div>
+        <div class="fix"></div>
+    </div>
+<div class="rowElem">
+    <label>Page Redirect: <a onclick="$.jGrowl('Page Redirect will automatically redirect this page to the following url. Leave blank for no redirect.');">&nbsp;&nbsp;<i class="fa fa-question-circle fa-1x"></i></a></label>
+    <div class="formRight">
+        <input value="<?=$this->pageInfo['redirect'];?>" type="text" class="validate[optional]" name="redirect" id="redirect" style="width:30%"/>
+    </div>
+    <div class="fix"></div>
+</div>

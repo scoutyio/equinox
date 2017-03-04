@@ -1,0 +1,51 @@
+<form action="<?=_EQROOT_;?>contacts/add" method="post" id="valid" class="mainForm">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Contact Info</h5><div class="loader"></div></div>
+		<div class="rowElem noborder">
+            <label>Title:</label>
+                <div class="formRight">
+                <select name="title" class="validate[required]">
+                    <option value="">Choose Title</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Dr.">Dr.</option>
+                    <option value="Prof.">Prof.</option>
+                </select>
+                </div>
+            <div class="fix"></div>
+        </div>
+		<div class="rowElem"><label>First Name:</label><div class="formRight"><input type="text" class="validate[required]" name="fname" id="fname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Last Name:</label><div class="formRight"><input type="text" class="validate[required]" name="lname" id="lname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Email:</label><div class="formRight"><input type="text" class="validate[required,custom[email]]" name="email" id="email"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Address:</label><div class="formRight"><input type="text" name="address" id="address"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Address Line 2:</label><div class="formRight"><input type="text" name="address2" id="address2"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>City:</label><div class="formRight"><input type="text" name="city" id="city"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Post Code:</label><div class="formRight"><input type="text" name="postcode" id="postcode"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Phone:</label><div class="formRight"><input type="text" name="phone" id="phone"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Mobile:</label><div class="formRight"><input type="text" name="mobile" id="mobile"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Company:</label><div class="formRight"><input type="text" name="company" id="company"/></div><div class="fix"></div></div>
+        <? if ($this->contactCats) { ?>
+		<div class="rowElem"><label>Categories:</label>
+            <div class="formRight">
+            	<? foreach($this->contactCats as $cats){ ?>
+               		<input type="checkbox" id="contactcat<?=$cats['id'];?>" name="cats[]" value="<?=$cats['id'];?>"/>
+               		<label for="contactcat<?=$cats['id'];?>"><?=$cats['name'];?></label>             
+                <? } ?>
+            </div>
+            <div class="fix"></div>
+		</div>
+        <? } ?>
+        
+		<div class="rowElem formaction noborder">
+			<input type="submit" value="Add Contact" class="greyishBtn floatright">
+            <div class="fix"></div>
+        </div>
+		<div class="fix"></div>
+
+	</div>
+</fieldset>
+</form>
+
+<div id="divToUpdate"></div>

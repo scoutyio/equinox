@@ -1,0 +1,18 @@
+<div class="rowElem"><label>Page Contents: <a onclick="$.jGrowl('These are contents that can be added to the page, some are contents that are only used once as a whole and some are individual records of a large content.');">&nbsp;&nbsp;<i class="fa fa-question-circle fa-1x"></i></a></label>
+	<div class="formRight">
+    <input type="radio" name="contenttype" id="newcontent" value="newcontent" checked/><label for="newcontent">New Content</label>
+	<input type="radio" name="contenttype" id="exitstingcontent" value="exitstingcontent"/><label for="exitstingcontent">Existing Content</label>
+        <div id="newComponents">
+        	<?=$this->newContentSelect;?>
+        </div>
+        <div id="existingComponents" style="display:none;">
+        	<?=$this->existingSelect;?> 
+        </div>
+    </div><div class="fix"></div>
+</div>
+<div class="rowElem noborder">
+	<div class="formRight" id="componentContent">
+    	<?=$this->pagesComponents;?>
+    </div>
+    <div class="fix"></div>
+</div>

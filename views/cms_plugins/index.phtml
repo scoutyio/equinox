@@ -1,0 +1,29 @@
+<!-- Dynamic table -->
+<div class="widget first">
+    <div class="head" style="border-bottom: 1px solid #d2d2d2;"><h5 class="iCog3">Plugins List</h5></div>
+    <table cellpadding="0" cellspacing="0" border="0" class="tableStatic display component" width="100%">
+        <thead>
+            <tr>
+                <td>Plugin Id</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td>File Location</td>
+            </tr>
+        </thead>
+        <tbody>
+        <? foreach($this->pluginInfo as $plugin){
+			?>
+            <tr id="recordsArray_<?=$plugin['id']; ?>" class="gradeX">
+                <td class="center"><div class="handle"><i class="fa fa-bars fa-1x"></i></div><?=$plugin['id'];?></td>
+                <td class="center"><a href="<?=_EQROOT_;?>cms_plugins/edit/<?=$plugin['id'];?>"><?=$plugin['name'];?></a></td>
+                <td class="center"><?=$plugin['type'];?></td>
+                <td class="center"><?=$plugin['location'];?></td>
+            </tr>
+        <? }?>
+        </tbody>
+    </table>
+</div>
+
+<div id="result">
+
+</div>

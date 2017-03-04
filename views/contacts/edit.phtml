@@ -1,0 +1,52 @@
+<form action="<?=_EQROOT_;?>contacts/edit/<?=$this->contactInfo['id'];?>" method="post" id="valid" class="mainForm">
+<input type="hidden" value="<?=$this->contactInfo['id'];?>" name="id">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iUser">Edit Contact</h5><div class="loader"></div></div>
+		<div class="rowElem noborder">
+            <label>Title:</label>
+            <div class="formRight">
+            <select name="title" >
+                <option value="" <?php if($this->contactInfo['title']==""){?> selected <? }?>>Choose Title</option>
+                <option value="Mr." <?php if($this->contactInfo['title']=="Mr."){?> selected <? }?>>Mr.</option>
+                <option value="Mrs." <?php if($this->contactInfo['title']=="Mrs."){?> selected <? }?>>Mrs.</option>
+                <option value="Ms." <?php if($this->contactInfo['title']=="Ms."){?> selected <? }?>>Ms.</option>
+                <option value="Dr." <?php if($this->contactInfo['title']=="Dr."){?> selected <? }?>>Dr.</option>
+                <option value="Prof." <?php if($this->contactInfo['title']=="Prof."){?> selected <? }?>>Prof.</option>
+            </select>
+            </div>
+            <div class="fix"></div>
+        </div>
+		<div class="rowElem"><label>First Name:</label><div class="formRight"><input value="<?=$this->contactInfo['fname'];?>" type="text" class="validate[required]" name="fname" id="fname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Last Name:</label><div class="formRight"><input value="<?=$this->contactInfo['lname'];?>" type="text" class="validate[required]" name="lname" id="lname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Email:</label><div class="formRight"><input value="<?=$this->contactInfo['email'];?>" type="text" class="validate[required,custom[email]]" name="address" id="address"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Address:</label><div class="formRight"><input value="<?=$this->contactInfo['address'];?>" type="text" name="address" id="address"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Address Line 2:</label><div class="formRight"><input value="<?=$this->contactInfo['address2'];?>" type="text" name="address2" id="address2"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>City:</label><div class="formRight"><input value="<?=$this->contactInfo['city'];?>" type="text" name="city" id="city"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Post Code:</label><div class="formRight"><input value="<?=$this->contactInfo['postcode'];?>" type="text" name="postcode" id="postcode"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Phone:</label><div class="formRight"><input value="<?=$this->contactInfo['phone'];?>" type="text" class="maskPhone" name="phone" id="phone"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Mobile:</label><div class="formRight"><input value="<?=$this->contactInfo['mobile'];?>" type="text" class="maskPhone" name="mobile" id="mobile"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Company:</label><div class="formRight"><input value="<?=$this->contactInfo['company'];?>" type="text" name="company" id="company"/></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Categories:</label>
+            <div class="formRight">
+            	<?php
+				      foreach($this->contactCats as $cats){ ?>
+                   		<input type="checkbox" id="contactcat<?=$cats['id'];?>" name="cats[]" value="<?=$cats['id'];?>" <?  if (preg_match('/\b'.$cats['id'].'\b/',$this->contactInfo['cats'])) { ?>checked="checked" <? }?> /><label for="contactcat<?=$cats['id'];?>"><?=$cats['name'];?></label>             
+                <?php } ?>
+                
+            </div>
+            <div class="fix"></div>
+		</div>
+		<div class="rowElem formaction noborder">
+                <input type="button" value="Delete Contact" class="redBtn floatright" onclick="redirect('<?=_EQROOT_;?>contacts/delete/<?=$this->contactInfo['id'];?>','Delete this contact? Are you sure?')">
+                <input type="button" value="Back to Contacts" class="blueBtn floatright" onclick="redirect('<?=_EQROOT_;?>contacts')">
+                <input type="submit" value="Save Contact" id="addEdit" onclick="saveedit('<?=$this->contactInfo['db_name'];?>_form')" class="greyishBtn floatright">
+            <div class="fix"></div>
+        </div>
+		<div class="fix"></div>
+
+	</div>
+</fieldset>
+</form>
+
+<div id="divToUpdate"></div>

@@ -1,0 +1,61 @@
+<div class="widgets">
+	<div class="left">
+		<form action="<?=_EQROOT_?>settings/save" method="post" id="valid" class="mainForm mainForm1">
+		<fieldset>
+			<div class="widget first">
+				<div class="head"><h5><i class="fa fa-building fa-1x"></i>Company Info</h5><div class="loader loader1"></div></div>
+					<? if(count($this->companyInfo)>0){?> <input type="hidden" name="id" value="<?=$this->companyInfo['id'];?>"> <? }?>
+					<div class="rowElem noborder"><label>Company Name*:</label><div class="formRight"><input value="<?=$this->companyInfo['name'];?>" type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Email*:</label><div class="formRight"><input value="<?=$this->companyInfo['email'];?>" type="text" class="validate[required,custom[email]]" name="email" id="email"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Address Line 1*:</label><div class="formRight"><input value="<?=$this->companyInfo['address'];?>" type="text" class="validate[required]" name="address" id="address"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Address Line 2:</label><div class="formRight"><input value="<?=$this->companyInfo['address2'];?>" type="text" name="address2" id="address2"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>City*:</label><div class="formRight"><input value="<?=$this->companyInfo['city'];?>" type="text" class="validate[required]" name="city" id="city"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>State/Province:</label><div class="formRight"><input value="<?=$this->companyInfo['stateprov'];?>" type="text" name="stateprov" id="stateprov"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Post Code:</label><div class="formRight"><input value="<?=$this->companyInfo['postcode'];?>" type="text" name="postcode" id="postcode"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Phone:</label><div class="formRight"><input value="<?=$this->companyInfo['phone'];?>" type="text" name="phone" id="phone"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Fax:</label><div class="formRight"><input value="<?=$this->companyInfo['fax'];?>" type="text" name="fax" id="fax"/></div><div class="fix"></div></div>
+		            <div class="rowElem"><label>Meta Keywords*:</label><div class="formRight"><input value="<?=$this->companyInfo['meta_keywords'];?>" type="text" class="validate[required]" name="meta_keywords" id="meta_keywords"/></div><div class="fix"></div></div>
+		            <div class="rowElem"><label>Meta Description*:</label><div class="formRight"><input value="<?=$this->companyInfo['meta_description'];?>" type="text" class="validate[required]" name="meta_description" id="meta_description"/></div><div class="fix"></div></div>
+		            <div class="rowElem formaction noborder">
+		                <input type="submit" value="Save Settings" class="greyishBtn floatright">
+		                <div class="fix"></div>
+		            </div>
+					<div class="fix"></div>
+			
+				</div>
+			</div>
+		</fieldset>
+		</form>
+    <div class="right">
+    
+		<form action="<?=_EQROOT_?>settings/saveLogo" enctype="multipart/form-data" method="post" id="valid2" class="mainForm mainForm2">
+		<fieldset>
+	    	<div class="widget first"> 
+	           <? if(count($this->companyInfo)>0){?> <input type="hidden" name="id" value="<?=$this->companyInfo['id'];?>"> <? }?>
+				<div class="head"><h5><i class="fa fa-image fa-1x"></i>Upload Logo</h5><div class="loader loader2"></div></div>
+				<div class="rowElem noborder">
+					<div class="formRight">
+						<div id="logoImage">
+							<? if($this->companyInfo['logo']){?>
+								<img src="<?=_SITEROOT_;?>uploads/<?=$this->companyInfo['logo'];?>" align="center" width="225">
+							<? } else { ?>
+	    						No Logo Selected
+							<? }?>
+						</div>
+					</div>
+				</div>
+				<div class="rowElem noborder">
+					<label>Choose File:</label> 
+					<div class="formRight">
+						<input type="file" class="validate[required,checkFileType[jpg|jpeg|gif|JPG|png|PNG]] fileInput" name="fileInput" id="fileInput" />
+					</div>
+					<div class="fix"></div>
+				</div>
+				<input type="submit" value="Update Logo" class="greyishBtn submitForm">
+				<div class="fix"></div>
+			</div>
+    	</fieldset>
+		</form>
+    </div>
+    
+</div>

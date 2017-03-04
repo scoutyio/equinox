@@ -1,0 +1,135 @@
+<p><strong>Record Information</strong></p>
+<div class="uiForm">
+    <form action="" id="valid2" class="mainForm mainAjaxForm">
+    	<input type="hidden" id="pluginid" value="<?=$_POST['pluginid'];?>" />
+    	<input type="hidden" id="plugstruid" value="<?=$_POST['plugstrcuid'];?>" />
+    	<input type="hidden" id="fid" value="<?=$_POST['fid'];?>" />
+    	<label class="dialog">Type</label>
+        <select name="record_type" id="record_type" style="floaT:left;"  onchange="customlaunch(this.value);">
+        	<option value="text">Text</option>
+            <option value="textarea">Textarea</option>
+            <option value="number">Number</option>
+            <option value="email">Email</option>
+            <option value="radio">Radio</option>
+            <option value="checkboxes">Checkboxes</option>
+            <option value="select">Select</option>
+            <option value="multiselect">Multiple Select</option>
+            <option value="html">HTML</option>
+            <option value="yesno">Yes/No</option>
+            <option value="date">Date</option>
+            <option value="time">Time</option>
+            <option value="color">Color</option>
+            <option value="file">Single File</option>
+            <option value="photo">Photo</option>
+            <option value="multiphoto">Multiple Photos</option>
+            <option value="custom_url">Custom URL</option>
+			<option value="foreignkey">Foreign Key</option>
+			<option value="include">Include</option>
+            <option value="ukpostcode">UK PostCode</option>
+		</select>
+        <div id="fkey" style="display:none;">
+            <label class="dialog">Foreign Key</label>
+            <select style="floaT:left;" id="record_fkey" name="record_fkey">
+            	<?php
+            	   $fk_q = 'SELECT * FROM cms_plugin_structure WHERE id <> "'.$_POST['plugstrcuid'].'"';
+      				   $fk_r = mysqli_query($con,$fk_q);
+      				   while($fk = mysqli_fetch_array($fk_r,MYSQLI_ASSOC)){?>
+                   		<option value="<?=$fk['id'];?>"><?=$fk['name'];?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <label class="dialog">Name</label>
+        <input type="text" value="" name="record_name" onkeypress="return handleEnter(this, event)" id="record_name"/>
+    	<label class="dialog">Database Name</label>
+        <input type="text" value="" name="record_dbname" onkeypress="return handleEnter(this, event)" id="record_dbname"/>
+    	<div id="photoResize" style="display:none;">
+	    	<label class="dialog">Photo Resize Options</label>
+	        <input type="text" value="" name="record_photoresize" onkeypress="return handleEnter(this, event)" id="record_photoresize"/>
+    	</div>
+    	<div id="customUrl" style="display:none;">
+	    	<label class="dialog">Custom Url</label>
+	        <input type="text" value="" name="record_customurl" onkeypress="return handleEnter(this, event)" id="record_customurl"/>
+    	</div>
+    	<label class="dialog">Helper</label>
+        <input type="text" value="" name="record_helper" onkeypress="return handleEnter(this, event)" id="record_helper"/>
+    	<label class="dialog">Options</label>
+        <textarea id="record_options" name="record_options" rows="5"></textarea>
+        <script>
+		function customlaunch(val) {
+			if(val=="foreignkey") {
+				$("#fkey").show();
+				$("#customUrl").hide();
+				$("#photoResize").hide();
+				$("#record_dbname").val("").removeAttr("disabled");
+			} else if(val=="photo") {
+				$("#photoResize").show();
+				$("#customUrl").hide();
+				$("#fkey").hide();
+				$("#record_dbname").val("").removeAttr("disabled");
+			} else if(val=="custom_url") {
+				$("#customUrl").show();
+				$("#photoResize").hide();
+				$("#fkey").hide();
+				$("#record_dbname").val("custom_url").attr("disabled",true);
+			} else {
+				$("#photoResize").hide();
+				$("#customUrl").hide();
+				$("#fkey").hide();
+				$("#record_dbname").val("").removeAttr("disabled");
+			}
+		}
+		function save() {
+			$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: "<?=_EQROOT_;?>cms_plugins/add_record_structure_add",
+				data: {
+					'fid': $("#fid").val(),
+					'plugstruid': $("#plugstruid").val(),
+					'record_type': $("#record_type").val(),
+					'record_name': $("#record_name").val(),
+					'record_dbname': $("#record_dbname").val(),
+					'record_helper': $("#record_helper").val(),
+					'record_options': $("#record_options").val(),
+					'record_fkey': $("#record_fkey").val(),
+					'record_photoresize': $("#record_photoresize").val(),
+					'record_customurl': $("#record_customurl").val()
+				},
+                beforeSend: function(){
+                    $.getJSON('<?=_EQROOT_;?>login/check_status', function(check) {
+                        if(check.status == 'loggedout'){
+                            window.location = '<?=_EQROOT_;?>';
+                            return false;
+                        }
+                    });
+                },
+				success: function (data) {
+					if (data.response == "sqlerror") {
+						alert('Sorry, but that database name is a reserved SQL keyword, please use another one.');
+						$('#comStrucDiv');
+					}else if (data.response == "matchingfields"){
+						alert('Sorry, but there is already a database name named "'+$("#record_dbname").val()+'" in this fieldset.');
+						$('#comStrucDiv');
+					}else if (data.response == "emptyfields"){
+						alert('Please do not leave the "Name" and/or "Database Name" fields empty.');
+						$('#comStrucDiv');
+					}else if (data.response == "success"){
+						//$( "#comStrucDiv" ).html(msg);
+						$('#comStrucDiv').load("<?=_EQROOT_;?>cms_plugins/show_plugin_structure?pluginid=<?=$_POST['pluginid']?>");
+						$('#dialog-message2').dialog( "close" );
+						$('#dialog-message2').html('');
+					}
+
+				}
+			});
+		}
+		$(document).ready(function(){
+
+			$("#record_dbname").keyup(function() {
+			  str = $(this).val();
+			  $(this).val(str.toLowerCase().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_'));
+			});
+		});
+		</script>
+    </form>
+</div>

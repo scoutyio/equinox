@@ -1,0 +1,18 @@
+<div class="rowElem">
+    <label>Meta Info: <a onclick="$.jGrowl('Meta Information that will control the SEO settings of this specific page.  If you leave it blank, the General Meta Settings in the Setings section will take over.');">&nbsp;&nbsp;<i class="fa fa-question-circle fa-1x"></i></a></label>
+	<div class="formRight">
+    	<a onclick="showhide('metaforms'); if (document.getElementById('pagemetaimg').src.indexOf('plus.gif') &gt; 0){ document.getElementById('pagemetaimg').src = '<?=EQ_PUB;?>images/minus.gif'; } else { document.getElementById('pagemetaimg').src = '<?=EQ_PUB;?>images/plus.gif'; } return false;"><img src="<?=EQ_PUB?>images/plus.gif" id="pagemetaimg" width="9" height="9" border="0" align="absmiddle" alt="Modify Meta Information"></a>
+        <div id="metaforms">
+        <table width="100%">
+        	<tr><td width="150px" style="vertical-align:top"><label>Search Index</label></td><td style="vertical-align:top">
+            	<input type="radio" id="allow" name="search_index" <?=($this->pageInfo['search_index']=="yes"?'checked="checked"':'');?> value="yes" checked="checked"/><label for="allow">Allow</label>
+                <input type="radio" id="dont" name="search_index" <?=($this->pageInfo['search_index']=="no"?'checked="checked"':'');?> value="no"/><label for="dont">Don't Allow</label>
+            </td></tr>
+            <tr><td width="100px" style="vertical-align:top"><label>Title</label></td><td style="vertical-align:top"><input type="text" name="meta_title" value="<?=$this->pageInfo['meta_title'];?>" style="width:80%"/></td></tr>
+        	<tr><td style="vertical-align:top"><label>Description</label></td><td style="vertical-align:top"><input type="text" name="meta_description" value="<?=$this->pageInfo['meta_description'];?>" style="width:80%"/></td></tr>
+        	<tr><td style="vertical-align:top"><label>Keywords</label></td><td style="vertical-align:top"><input type="text" name="meta_keywords" value="<?=$this->pageInfo['meta_keywords'];?>" style="width:80%"/></td></tr>
+        </table>
+        	
+        </div>
+    </div><div class="fix"></div>
+</div>

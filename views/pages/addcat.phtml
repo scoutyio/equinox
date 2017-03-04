@@ -1,0 +1,16 @@
+<form action="<?=_EQROOT_;?>pages/addcat" method="post" id="valid" class="mainForm">
+<fieldset>
+
+	<div class="widget first">
+	<div class="head"><h5 class="iList">Category Info</h5></div>
+		<div class="rowElem noborder"><label>Name:</label><div class="formRight"><input type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+		<div class="rowElem formaction noborder">
+			<input type="button" value="Back" onclick="redirect('<?=_EQROOT_;?>pages/cats');" class="blueBtn floatright">
+			<input type="submit" value="Add Category" class="greyishBtn floatright">
+			<div class="fix"></div>
+		</div>
+		<div class="fix"></div>
+	</div>
+	
+</fieldset>
+</form>

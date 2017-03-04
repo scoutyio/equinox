@@ -1,0 +1,24 @@
+<!-- Dynamic table -->
+        <div class="table first">
+            <div class="head"><h5><i class="fa fa-users fa-1x"></i>Users List</h5></div>
+            <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?
+				foreach($this->usersList as $user){ ?>
+                    <tr class="gradeA" align="center">
+                        <td><a href="<?=_EQROOT_;?>users/edit/<?=$user['id'];?>"><?=$user['lname'].', '.$user['fname'];?></a></td>
+                        <td><?=$user['email'];?></td>
+                        <td><?=$user['status'];?></td>
+                    </tr>
+                <? }?>
+                </tbody>
+            </table>
+        </div>
+        

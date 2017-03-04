@@ -1,0 +1,21 @@
+<br />
+<a href="<?=_EQROOT_;?>pages/addcat" class="modal"><i class="fa fa-plus fa-1x"></i>Add Page Category</a>
+
+<!-- Dynamic table -->
+<div class="table first">
+    <div class="head"><h5 class="iFrames">Page Categories</h5></div>
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($this->cats as $cat){?>
+            <tr class="gradeA">
+                <td class="center"><a href="<?=_EQROOT_;?>pages/editcat/<?=$cat['id'];?>"><?=$cat['name'];?></a></td>
+            </tr>
+        <? }?>
+        </tbody>
+    </table>
+</div>

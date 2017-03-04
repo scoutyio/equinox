@@ -1,0 +1,29 @@
+<form action="<?=_EQROOT_;?>pages/save/<?=$this->pageInfo['id']?>" method="post" id="valid" class="mainForm">
+<input type="hidden" value="<?=$this->pageInfo['id']?>" name="id">
+<fieldset>
+    <div class="widget first">
+    <div class="head"><h5><i class="fa fa-info-circle fa-1x"></i>Page Info</h5><div class="loader" style="float:right;"></div></div>
+        <?
+            $this->render('pages/edit/basicforms');
+            $this->render('pages/edit/metaforms');
+            $this->render('pages/edit/pagecontentforms');
+        ?>
+        <div class="fix"></div>
+        
+        <div class="rowElem formaction noborder">
+                <? if($this->pageInfo['id']!=1) { ?>
+                    <a onclick="redirect('<?=_EQROOT_;?>pages/deletepage/<?=$this->pageInfo['id']?>','Are you sure you want to delete this page? ALL SUB PAGES WILL BECOME NON PARENT PAGES IN SAME CATEGORY');" value="Delete" class="redBtn floatright button">Delete</a>
+                <? } ?>
+                <a class="blueBtn floatright button" onclick="redirect('<?=_EQROOT_;?>pages')">Back to Pages</a>
+                <input type="submit" value="Save" class="greyishBtn floatright">
+                
+            <div class="fix"></div>
+        </div>
+        <div class="fix"></div>
+</fieldset>
+</form>
+
+
+<div id="pageurl" style="visibility:hidden"></div>  
+<?php /* DO NOT REMOVE BELOW dialog*/ ?>
+<div id="dialog3"></div>    

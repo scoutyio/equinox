@@ -1,0 +1,42 @@
+<?php 
+	
+
+if(!count($this->pageList)){ 
+
+	echo "<div class=\"nNote nWarning hideit\">
+            <p><i class=\"fa fa-warning fa-1x\"></i><strong>WARNING: </strong>You do not have any categories set for your pages.  Please <a href=\"" . _EQROOT_ . "pages/addcat\"><strong>create a category</strong></a>first.</p>
+        </div>";
+} 
+
+if(count($this->pageList)){
+	?>
+<br/>
+<a href="<?=_EQROOT_;?>pages/add" class="modal"><i class="fa fa-plus fa-1x"></i>Add New Page</a>
+
+<div class="widget first">
+	<?php 
+	foreach($this->pageList as $cats){ ?>
+
+		<div class="head"><h5><i class="fa fa-code-fork fa-1x"></i><?=$cats['name'];?></h5></div>
+		<div class="body pagesort sorting">
+	        <ul>
+				<?php foreach ($cats['pages'] as $pages){ ?>
+
+					<li id="recordsArray_<?=$pages['id']; ?>"><span class="handle" ><i class="fa fa-bars"></i></span><h4 <?=($pages['pagestatus']=='hidden'?'class="hidden"':'');?>><a href="<?=_EQROOT_;?>pages/edit/<?=$pages['id']; ?>"><?=$pages['title'].' (' . $pages['id'] . ')'; ?></a><span class="pageUrl"><?='&nbsp;&nbsp;/' . $pages['page_url'];?></span></h4>
+						<?php if(isset($pages['subpages'])){ ?>
+							<ul style="margin-left:20px;">
+							<?php foreach($pages['subpages'] as $subpage){ ?>
+
+								<li id="recordsArray_<?=$subpage['id']; ?>"><span class="handle"><i class="fa fa-bars"></i></span><h4 <?=($subpage['pagestatus']=='hidden'?'class="hidden"':'');?>><a href="<?=_EQROOT_;?>pages/edit/<?=$subpage['id']; ?>"><?=$subpage['title'].' (' . $subpage['id'] . ')'; ?></a><span class="pageUrl"><?='&nbsp;&nbsp;/' . $subpage['page_url'];?></span></h4></li>
+
+							<?php } ?>
+							</ul>
+						<? } //End if?>
+					</li>
+
+				<?php } //End foreach?>
+			</ul>
+		</div>
+	<?php } //End foreach?>
+</div>
+<?php } ?>

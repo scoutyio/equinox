@@ -1,0 +1,76 @@
+<form action="<?=_EQROOT_?>mail/newcampaign" method="post" id="valid" class="mainForm" enctype="multipart/form-data">
+<fieldset>
+<input type="hidden" name="campaign" value="1" />
+<input type="hidden" name="cats" value='<?=$this->cat;?>' />
+	<div class="widget first">
+	<div class="head"><h5>Campaign Details</h5><div class="loader"></div></div> 
+
+    <div class="rowElem noborder">
+        <label>Campaign Name:</label>
+        <div class="formRight">
+            <input type="text" class="validate[]" name="name" id="name"/>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>From Name:</label>
+        <div class="formRight">
+            <input type="text" class="validate[]" name="fromname" id="fromname"/>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>From Email:</label>
+        <div class="formRight">
+            <input type="text" class="validate[custom[email]]" name="fromemail" id="fromemail"/>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>To:</label>
+        <div class="formRight">
+            <select name="contact[]" id="contact" multiple="" class="chzn-select validate[]"></select>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>Subject:</label>
+        <div class="formRight">
+            <input type="text" class="validate[]" name="subject" id="subject"/>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>Mail Body:</label>
+        <div class="formRight">
+            <textarea class="tinymce" name="body"></textarea>
+        </div>
+        <div class="fix"></div>
+    </div>
+    
+
+    <div class="rowElem">
+        <label>Attachment:</label>
+        <div class="formRight">
+            <input type="file" name="file" id="file">
+        <div class="fix"></div>
+    </div>
+    
+    <div class="fix"></div>
+                
+    <div class="rowElem formaction noborder">
+        <div class="formRight">
+      		<input type="submit" value="Create Campaign" class="greyishBtn floatright">
+        </div>
+   		<div class="fix"></div>
+    </div>
+
+	</div>
+</fieldset>
+</form>
+<div id="result"></div>

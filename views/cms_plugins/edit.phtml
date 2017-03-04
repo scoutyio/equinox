@@ -1,0 +1,43 @@
+<form method="post" action="<?=_EQROOT_;?>cms_plugins/edit/<?=$this->pluginInfo['id'];?>" id="valid" class="mainForm">
+<input type="hidden" value="<?=$this->pluginInfo['id'];?>" name="id" id="id">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Plugin Info</h5></div>
+		<div class="rowElem noborder"><label>Plugin Name:</label><div class="formRight"><input value="<?=$this->pluginInfo['name'];?>" type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Plugin Type:</label><div class="formRight">
+			<select class="validate[required]" name="type" id="type">
+				<option value="single" <?=($this->pluginInfo['type']=="single"?"selected":"");?>>Single Use</option>
+				<option value="multi" <?=($this->pluginInfo['type']=="multi"?"selected":"");?>>Multiple Use</option>
+				<option value="static" <?=($this->pluginInfo['type']=="static"?"selected":"");?>>Static</option>
+			</select>
+		</div><div class="fix"></div></div>
+		<div class="rowElem"><label>Plugin Include Location:</label><div class="formRight"><input value="<?=$this->pluginInfo['location'];?>" type="text" class="validate[required]" name="location" id="location"/></div><div class="fix"></div></div>
+		<div class="fix"></div>
+    	                
+		
+		<div class="head"><h5 class="iSettings2">Plugin Structure</h5><div class="loader"><a class="export_plugin" data-id="<?=$this->pluginInfo['id'];?>"><i class="fa fa-download"><h5 class="iSettings2">Export&nbsp;&nbsp;</h5></i></a><a class="import_plugin" data-id="<?=$this->pluginInfo['id'];?>"><i class="fa fa-upload"><h5 class="iSettings2">Import&nbsp;&nbsp;</h5></i></a></div></div>                
+        <div class="rowElem noborder exportDiv" style="display:none;"><label>Export Script:</label><div class="formRight"><input type="text" class="validate[required]" id="export"/></div><div class="fix"></div><i class="fa fa-close close"></i></div>
+        <div class="rowElem noborder importDiv" style="display:none;"><label>Import Script:</label><div class="formRight"><textarea class="validate[required]" id="import" rows="30"></textarea><input type="button" value="import" class="blueBtn floatright importButton" data-id="<?=$this->pluginInfo['id'];?>"></div><div class="fix"></div><i class="fa fa-close close"></i></div>
+		
+            <div class="componentStructure">
+                <a class="addButton modal" onclick="modalRun('Add Component Structure','<?=$this->pluginInfo['id'];?>','','','')" title=""><i class="fa fa-plus-square fa-1x"></i>Create New Structure</a>
+                <div id="comStrucDiv">
+				 
+					 <?=$this->pluginStructure;?>
+                    
+                    <div class="fix"></div>   
+                </div>
+            	<div class="fix"></div>   
+            </div>
+        <div class="fix"></div>
+        <div class="rowElem formaction noborder">
+			<input type="button" onclick="redirect('<?=_EQROOT_;?>cms_plugins/delete/<?=$this->pluginInfo['id']?>','Are you sure you want to delete this component?')" value="Delete" class="redBtn floatright">
+            <input type="button" value="Back To Plugins" class="blueBtn floatright" onclick="redirect('<?=_EQROOT_;?>cms_plugins')">
+        	<input type="submit" value="Save Plugin" class="greyishBtn floatright">
+        	<div class="fix"></div>
+    	</div>
+    </div>
+</fieldset>
+</form>
+<div id="dialog-message"></div>
+<div id="dialog-message2"></div>

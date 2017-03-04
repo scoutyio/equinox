@@ -1,0 +1,21 @@
+<form action="<?=_EQROOT_;?>pages/editcat/<?=$this->data['id'];?>" method="post" id="valid" class="mainForm">
+<fieldset>
+
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Category Info</h5><div class="loader"></div></div>
+	<input type="hidden" name="id" value="<?=$this->data['id'];?>">
+		<div class="rowElem noborder"><label>Name:</label><div class="formRight"><input value="<?=$this->data['name']?>" type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+        
+		<div class="rowElem formaction noborder">
+			<? if($this->data['id']!=1){ ?><input type="button" onclick="redirect('<?=_EQROOT_;?>pages/deletecat/<?=$this->data['id']?>','Are you sure you want to delete? ALL SUB PAGES WILL Go INTO Main Page Category');" value="Delete" class="redBtn floatright"><? } ?>
+            <input type="button" onclick="redirect('<?=_EQROOT_;?>pages/cats');" value="Back" class="blueBtn floatright">
+            <input type="submit" value="Save" class="greyishBtn floatright">
+        	<div class="fix"></div>
+		</div>
+		<div class="fix"></div>	
+		
+	</div>
+</fieldset>
+</form>
+
+<div id="divToUpdate"></div>

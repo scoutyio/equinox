@@ -1,0 +1,50 @@
+<!-- Top navigation bar -->
+<div id="topNav">
+    <div class="fixed">
+        <div class="wrapper">
+            <div class="welcome"><span><a href="#" title=""><i class="fa fa-user fa-1x"></i></a>Hi, <?=$_SESSION['x_equi_fname'];?></span></div>
+            <div class="userNav">
+                <ul>
+                    <li><a href="<?=_SITEROOT_;?>" target="_blank"><span><i class="fa fa-motorcycle fa-1x"></i>View Site</span></a></li>
+                    <li class="dd"><a href="#"><span><i class="fa fa-wrench fa-1x"></i>Settings</span></a>
+                        <ul class="menu_body">
+                            <li><a href="<?=_EQROOT_;?>settings" title=""><i class="fa fa-building fa-1x"></i>Comapny</a></li>
+                            <? if($_SESSION['x_equi_status']==1){ ?><li><a href="<?=_EQROOT_;?>users" title=""><i class="fa fa-users fa-1x"></i>Users</a></li> <? } ?>
+                            <!-- <li><a href="#" title="" class="sOutbox">outbox</a></li>
+                            <li><a href="#" title="" class="sTrash">trash</a></li> -->
+                        </ul>
+                    </li>
+                    <li><span><a href="<?=_EQROOT_;?>login/logout" title=""><i class="fa fa-sign-out fa-1x"></i>Logout</span></a></li>
+                </ul>
+            </div>
+            <div class="fix"></div>
+        </div>
+    </div>
+</div>
+
+<?
+                                                         
+
+?>
+<!-- Header -->
+<div id="header" class="wrapper">
+    <div class="logo">
+    	 <a href="<?=_EQROOT_;?>" title="">equinox</a>    
+    </div>
+    <?
+
+	if(isset($url[0]) && $url[0] != "" && $url[0] != "dashboard") {
+		$topNavUrl = $url[0];	
+	}else{
+		$topNavUrl = "home";
+	}
+    $this->render("topnav/".$topNavUrl);
+	?>
+    <div class="fix"></div>
+</div>
+
+
+<!-- Content wrapper -->
+<div class="wrapper">
+	
+	

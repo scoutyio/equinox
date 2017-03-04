@@ -1,0 +1,47 @@
+
+<p><strong>Fieldset Information</strong></p>
+<div class="uiForm">
+    <form id="valid2" class="mainForm mainAjaxForm">
+        <input type="hidden" id="pluginstrucid" value="<?=$_POST['plugstruid'];?>" />
+        <input type="hidden" id="pluginid" value="<?=$_POST['pluginid'];?>" />
+        <label class="dialog">Name</label>
+        <input type="text" value="" name="fieldsetname" id="fieldsetname" onkeypress="return handleEnter(this, event)"/>
+        <script>
+        function save() {
+            $.ajax({
+                type: 'POST',
+				dataType: "json",
+                url: "<?=_EQROOT_;?>cms_plugins/add_fieldset_structure_add",
+                data: { 
+                    'pluginid': $("#pluginid").val(),
+                    'pluginstrucid': $("#pluginstrucid").val(),
+                    'name': $("#fieldsetname").val()
+                },
+                beforeSend: function() {
+                    $.getJSON('<?=_EQROOT_;?>login/check_status', function(check) {
+                        if(check.status == 'loggedout'){
+                            window.location = '<?=_EQROOT_;?>';
+                            return false;
+                        } else {
+                            $('#comStrucDiv').css({'opacity':'0.6'});
+                        }
+                    });
+                },
+                success: function(data){
+                  	if (data.response == "error") {
+						alert('Please enter a value for Fieldset Name.');
+                        $('#comStrucDiv').css({'opacity':'1'});
+                    } else if (data.response == "exists") {
+                        alert('Sorry you are trying to hack this.../n/nThere already is a fieldset for this structure.');
+                        $('#comStrucDiv').css({'opacity':'1'});
+					} else if (data.response == "success") {
+                        $('#dialog-message2').dialog('close');
+                        $('#dialog-message2').html('');
+						$('#comStrucDiv').css({'opacity':'1'}).load("<?=_EQROOT_;?>cms_plugins/show_plugin_structure?pluginid=<?=$_POST['pluginid'];?>");
+					}
+                }
+            });
+        }
+        </script>
+    </form>
+</div>

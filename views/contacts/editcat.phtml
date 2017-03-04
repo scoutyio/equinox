@@ -1,0 +1,18 @@
+<form action="<?=_EQROOT_?>contacts/editcat/<?=$this->catInfo['id'];?>" method="post" id="valid" class="mainForm">
+<input type="hidden" name="id" value="<?=$this->catInfo['id'];?>">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Edit Category</h5><div class="loader"></div></div>
+		<div class="rowElem noborder"><label>Name:</label><div class="formRight"><input type="text" class="validate[required]" value="<?=$this->catInfo['name'];?>" name="name" id="name"/></div><div class="fix"></div></div>
+		<div class="fix"></div>
+        <div class="rowElem formaction noborder">
+			<input type="button" value="Back" onclick="redirect('<?=_EQROOT_;?>contacts/cats');" class="blueBtn floatright">
+            <input type="submit" value="Save Category" class="greyishBtn floatright">
+			<div class="fix"></div>
+        </div>
+
+	</div>
+</fieldset>
+</form>
+
+<div id="divToUpdate"></div>

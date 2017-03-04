@@ -1,0 +1,95 @@
+<p><strong>Structure Information</strong></p>
+
+<script>
+$(document).ready(function(){
+	$("#content_dbname").keyup(function() {
+	  str = $(this).val();
+	  $(this).val(str.toLowerCase().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_'));
+	});
+});
+</script>
+<div class="uiForm">
+    <form action="" id="valid2" class="mainForm mainAjaxForm">
+    	<input type="hidden" id="pluginstrucid" value="<?=$this->pluginStructureInfo['id'];?>" />
+    	<label class="dialog">Parent</label>
+        <select name="parentid" id="parentid" style="floaT:left;" >
+        	<option value="0">None</option>
+			<? foreach($this->structureInfo as $structure) { ?>
+            	<option value="<?=$structure['id'];?>" <?=($this->pluginStructureInfo['parentid']==$structure['id']?"selected":"");?>><?=$structure['name'];?></option>
+       		<? } ?>
+        </select>
+    	<label class="dialog">Name</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['name']?>" onkeypress="return handleEnter(this, event)" name="content_name" id="content_name"/>
+    	<label class="dialog">Record Name</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['recordname']?>" onkeypress="return handleEnter(this, event)" name="content_recordname" id="content_recordname"/>
+    	<label class="dialog">Database Name</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['db_name']?>" onkeypress="return handleEnter(this, event)" name="content_dbname" id="content_dbname"/>
+    	<label class="dialog">List Fields</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['listfields']?>" onkeypress="return handleEnter(this, event)" name="content_listfields" id="content_listfields"/>
+    	<label class="dialog">List Order</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['listorder']?>" onkeypress="return handleEnter(this, event)" name="content_listorder" id="content_listorder"/>
+    	<label class="dialog">Search Records</label>
+        <input type="text" value="<?=$this->pluginStructureInfo['listsearch']?>" onkeypress="return handleEnter(this, event)" name="content_listsearch" id="content_listsearch"/>
+    	<script>
+		function save(){
+			$.ajax({
+				type: "POST",
+                dataType: "json",
+				url: "<?=_EQROOT_;?>cms_plugins/save_plugin_structure",
+				data: { 
+					'pluginstrucid': $("#pluginstrucid").val(),
+					'parentid': $("#parentid").val(),
+					'name': $("#content_name").val(),
+					'recordname': $("#content_recordname").val(),
+					'dbname': $("#content_dbname").val(),
+					'listorder': $("#content_listorder").val(),
+					'listsearch': $("#content_listsearch").val(),
+					'listfields': $("#content_listfields").val(),
+					'options': $("#content_options").val(),
+				},
+				beforeSend: function(){
+					$.getJSON('<?=_EQROOT_;?>login/check_status', function(check) {
+                        if(check.status == 'loggedout'){
+                            window.location = '<?=_EQROOT_;?>';
+                            return false;
+                        } else {
+                            $('#comStrucDiv').css({'opacity':'0.6'});
+                        }
+                    });
+				},
+				success: function(data){
+					if (data.response == "success") {
+						$('#comStrucDiv').css({'opacity':'1'}).load("<?=_EQROOT_;?>cms_plugins/show_plugin_structure?pluginid=<?=$this->pluginStructureInfo['pluginid']?>");
+						$('#dialog-message').dialog('close');
+						$('#dialog-message').html('');
+					} else if (data.response == "empty") {
+                        alert("Please make sure Name, Record Name, and Database Name are filled out.");
+                   		$('#comStrucDiv').css({'opacity':'1'});
+                    } else if (data.response == "exists") {
+                        alert("Sorry that database name already exists. Please pick another database name.");
+                        $('#comStrucDiv').css({'opacity':'1'});
+                    }
+				}
+			});
+		}
+		function deletethis(){
+			$.ajax({
+				type: 'POST',
+				url: "<?=_EQROOT_;?>cms_plugins/delete_plugin_structure",
+				data: { 
+					'pluginstrucid': $("#pluginstrucid").val()
+				},
+				beforeSend: function(){
+					$('#comStrucDiv').css({'opacity':'0.6'});
+				},
+				success: function(msg){
+					//$( "#comStrucDiv" ).html(msg);
+					$('#comStrucDiv').css({'opacity':'1'}).load("<?=_EQROOT_;?>cms_plugins/show_plugin_structure?pluginid=<?=$this->pluginStructureInfo['pluginid']?>");
+					$('#dialog-message').dialog('close');
+					$('#dialog-message').html('');
+				}
+			});
+		}
+		</script>
+    </form>
+</div>

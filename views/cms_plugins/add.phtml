@@ -1,0 +1,23 @@
+<form action="<?=_EQROOT_?>cms_plugins/add" method="post" id="valid" class="mainForm">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Plugin Info</h5></div>
+		<div class="rowElem noborder"><label>Plugin Name:</label><div class="formRight"><input type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Plugin Type:</label><div class="formRight">
+			<select class="validate[required]" name="type" id="type">
+				<option value="single">Single Use</option>
+				<option value="multi">Multiple Use</option>
+				<option value="static">Static</option>
+			</select>
+		</div><div class="fix"></div></div>
+		<div class="rowElem"><label>Plugin Include Location:</label><div class="formRight"><input type="text" class="validate[required]" name="location" id="location"/></div><div class="fix"></div></div>
+		<div class="fix"></div>
+					
+        <div class="rowElem formaction noborder">
+                <input type="submit" value="Add Component" class="greyishBtn floatright">
+            <div class="fix"></div>
+        </div>
+
+	</div>
+</fieldset>
+</form>

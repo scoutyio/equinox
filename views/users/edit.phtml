@@ -1,0 +1,27 @@
+<form action="<?=_EQROOT_;?>users/saveuser" method="post" id="valid" class="mainForm">
+<fieldset>
+<input type="hidden" value="<?=$this->user['id'];?>" name="id">
+	<div class="widget first">
+	<div class="head"><h5><i class="fa fa-user fa-1x"></i>User Info</h5><div class="loader"></div></div>
+		<div class="rowElem noborder"><label>First Name:</label><div class="formRight"><input value="<?=$this->user['fname'];?>" type="text" class="validate[required]" name="fname" id="fname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Last Name:</label><div class="formRight"><input value="<?=$this->user['lname'];?>" type="text" class="validate[required]" name="lname" id="lname"/></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Email:</label><div class="formRight"><input value="<?=$this->user['email'];?>" type="text" class="validate[required,custom[email]]" name="email" id="email"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Password:</label><div class="formRight"><input value="<?=$this->user['pass'];?>" type="text" class="validate[required]" name="pass" id="pass"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Status:</label><div class="formRight">
+				<select name="status" id="status" class="validate[required]">
+                	<option value="1" <? if($this->user['status']=="1"){?> selected <? }?>>Administrator</option>
+                    <option value="2" <? if($this->user['status']=="2"){?> selected <? }?>>User</option>
+                </select>
+		</div><div class="fix"></div></div>
+		
+		<div class="rowElem formaction noborder">
+			<input type="button" onclick="redirect('<?=_EQROOT_;?>users/deleteUser/<?=$this->user['id'];?>','Are you sure you want to remove this user?');" value="Remove User" class="redBtn floatright">
+			<input type="button" onclick="redirect('<?=_EQROOT_;?>users');" value="Back" class="blueBtn floatright">
+			<input type="submit" value="Save User" class="greyishBtn floatright">
+            <div class="fix"></div>
+        </div>
+		<div class="fix"></div>
+
+	</div>
+</fieldset>
+</form>

@@ -1,0 +1,22 @@
+<form action="<?=_EQROOT_;?>users/adduser" method="post" id="valid" class="mainForm">
+<fieldset>
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">User Info</h5><div class="loader"></div></div>
+		
+        <div class="rowElem noborder"><label>First Name:</label><div class="formRight"><input type="text" class="validate[required]" name="fname" id="fname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Last Name:</label><div class="formRight"><input type="text" class="validate[required]" name="lname" id="lname"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Email:</label><div class="formRight"><input type="text" class="validate[required,custom[email],ajax[ajaxUserEmail]] text-input" name="email" id="email"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Password:</label><div class="formRight"><input type="text" class="validate[required]" name="pass" id="pass"/></div><div class="fix"></div></div>
+		<div class="rowElem"><label>Status:</label><div class="formRight">
+				<select name="status" id="status" class="validate[required]">
+                    <option value="">Choose Status</option>
+                    <option value="1">Administrator</option>
+                    <option value="2">User</option>
+                </select>
+		</div><div class="fix"></div></div>
+        <input type="submit" value="Add User" class="greyishBtn submitForm">
+		<div class="fix"></div>
+
+	</div>
+</fieldset>
+</form>

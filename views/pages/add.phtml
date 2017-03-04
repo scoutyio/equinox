@@ -1,0 +1,43 @@
+<form action="<?=_EQROOT_?>pages/add" method="post" id="valid" class="mainForm">
+<fieldset>
+<input type="hidden" name="pagestatus" value="live" />
+	<div class="widget first">
+	<div class="head"><h5 class="iInfo">Page Info</h5></div> 
+    
+    <div class="rowElem noborder">
+        <label>Page Category:</label>
+        <div class="formRight">
+        <select name="catid" id="catid" class="validate[required]">
+            <option value="">None</option>
+            <?php
+            foreach($this->pageCats as $cat){?>
+                <option value="<?=$cat['id'];?>"><?=$cat['name'];?></option>
+            <? } ?>
+        </select>
+        </div>
+        <div class="fix"></div>
+    </div>
+
+    <div class="rowElem">
+        <label>Parent Page:</label>
+        <div class="formRight">
+        <select name="parentid" id="parentid" class="validate[required]">
+        </select>
+        </div>
+        <div class="fix"></div>
+    </div>
+                    
+    <div class="rowElem"><label>Page Title:</label><div class="formRight"><input type="text" class="validate[required]" name="title" id="title"/></div><div class="fix"></div></div>
+
+    <div class="fix"></div>
+                
+    <div class="rowElem formaction noborder">
+        <div class="formRight">
+      		<input type="submit" value="Create Page" class="greyishBtn floatright">
+        </div>
+   		<div class="fix"></div>
+    </div>
+
+	</div>
+</fieldset>
+</form>

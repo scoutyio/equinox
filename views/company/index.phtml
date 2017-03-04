@@ -1,0 +1,60 @@
+
+<div class="widgets">
+	<div class="left">
+		<div class="widget first">
+			<div class="head"><h5 class="iBuilding">Company Info</h5><div class="loader loader1"></div></div>
+				<form action="<?=_EQROOT_;?>company/update" method="post" id="valid" class="mainForm mainForm1">
+				<? if(isset($this->comp['id'])){?> <input type="hidden" name="id" value="<?=$this->comp['id'];?>"> <? }?>
+				<fieldset>
+					<div class="rowElem noborder"><label>Company Name*:</label><div class="formRight"><input value="<?=$this->comp['name'];?>" type="text" class="validate[required]" name="name" id="name"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Email*:</label><div class="formRight"><input value="<?=$this->comp['email'];?>" type="text" class="validate[required,custom[email]]" name="email" id="email"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Address*:</label><div class="formRight"><input value="<?=$this->comp['address'];?>" type="text" class="validate[required]" name="address" id="address"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>City*:</label><div class="formRight"><input value="<?=$this->comp['city'];?>" type="text" class="validate[required]" name="city" id="city"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>State/Province*:</label><div class="formRight"><input value="<?=$this->comp['stateprov'];?>" type="text" class="validate[required]" name="stateprov" id="stateprov"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Post Code*:</label><div class="formRight"><input value="<?=$this->comp['postcode'];?>" type="text" class="validate[required]" name="postcode" id="postcode"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Phone:</label><div class="formRight"><input value="<?=$this->comp['phone'];?>" type="text" class="maskPhone" name="phone" id="phone"/></div><div class="fix"></div></div>
+					<div class="rowElem"><label>Fax:</label><div class="formRight"><input value="<?=$this->comp['fax'];?>" type="text" class="maskPhone" name="fax" id="fax"/></div><div class="fix"></div></div>
+                    <div class="rowElem"><label>Meta Keywords*:</label><div class="formRight"><input value="<?=$this->comp['meta_keywords'];?>" type="text" class="validate[required]" name="meta_keywords" id="meta_keywords"/></div><div class="fix"></div></div>
+                    <div class="rowElem"><label>Meta Description*:</label><div class="formRight"><input value="<?=$this->comp['meta_description'];?>" type="text" class="validate[required]" name="meta_description" id="meta_description"/></div><div class="fix"></div></div>
+                    <div class="rowElem formaction noborder">
+                        <input type="submit" value="Save Settings" class="greyishBtn floatright">
+                        <div class="fix"></div>
+                    </div>
+					<div class="fix"></div>
+			
+				</fieldset>
+				</form>
+			</div>
+	</div>
+    <div class="right">
+    	<div class="widget first"> 
+           
+			<form action="<?=_EQROOT_;?>company/logo" enctype="multipart/form-data" method="post" id="valid2" class="mainForm mainForm2">
+				<? if(isset($this->comp['id'])){?> <input type="hidden" name="id" value="<?=$this->comp['id'];?>"> <? }?>
+				 <fieldset>
+					<div class="head"><h5 class="iImage">Logo</h5><div class="loader loader2"></div></div>
+					<div class="rowElem noborder">
+						<div class="formRight">
+						<? if(isset($this->comp['logo'])){?>
+							<div id="logoImage"><img src="<?=_EQROOT_;?>resources/uploads/<?=$this->comp['logo'];?>" align="center" width="225"></div>
+						<? } else { ?>
+    						No Logo Selected
+						<? }?>
+						</div>
+					</div>
+					<div class="rowElem">
+						<label>Choose File :</label> 
+						<div class="formRight">
+							<input type="file" class="validate[required,checkFileType[jpg|jpeg|gif|JPG|png|PNG]] fileInput" name="fileInput" id="fileInput" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					<input type="submit" value="Update Logo" class="greyishBtn submitForm">
+					<div class="fix"></div>
+				</fieldset>
+			</form>
+		</div>
+    
+    </div>
+    
+</div>

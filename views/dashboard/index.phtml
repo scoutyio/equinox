@@ -1,0 +1,16 @@
+<style>
+.widget.basic { background:none; border:none;}
+.widget.basic .body { border:1px solid #ccc; padding:40px 0 40px 0; border-radius:2px; background:#f9f9f9;}
+</style>
+
+<div class="widget first basic">
+    <div class="body aligncenter">
+        <a href="<?=_EQROOT_;?>pages" title="" class="btn55 mr10"><i class="fa fa-file-text-o fa-2x"></i><span>Pages</span></a>
+        <a href="<?=_EQROOT_;?>contacts" title="" class="btn55 mr10"><i class="fa fa-users fa-2x"></i><span>Contacts</span></a>
+        <a href="<?=_EQROOT_;?>filemanager" title="" class="btn55 mr10"><i class="fa fa-archive fa-2x"></i><span>Docs & Resources</span></a>
+        <a href="<?=_EQROOT_;?>mail" title="" class="btn55 "><i class="fa fa-envelope-o fa-2x"></i><span>Mailings</span></a>
+        <a href="<?=_EQROOT_;?>settings" title="" class="btn55 mr10"><i class="fa fa-wrench fa-2x"></i><span>Settings</span></a>
+                <a href="<?=_EQROOT_;?>stats" title="" class="btn55 mr10"><i class="fa fa-area-chart fa-2x"></i><span>Statistics</span></a>
+        <? if($_SESSION['x_equi_status']==1){ ?><a href="<?=_EQROOT_;?>users" title="" class="btn55 mr10"><i class="fa fa-lock fa-2x"></i><span>Admin Users</span></a><? } ?>
+    </div>
+</div>
